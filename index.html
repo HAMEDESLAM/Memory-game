@@ -8,10 +8,17 @@
     <title>Memory card</title>
 </head>
 <body>
+    <div class="control">
+        <form>
+            <input type="text" name="name" id="name" placeholder="Name">
+            <input type="number" name="cardsNumber" id="cardsNumber" placeholder="cards Number" max="40">
+            <input type="submit" id="submit" value="Start The Game">
+        </form>
+    </div>
     <div class="container">
         <div class="header">
             <div>
-                <h3>Memory cards</h3>
+                Hello: <span id="username"></span>
             </div>
             <div>
                 Attempts: <span id="attempts">0</span>
@@ -21,7 +28,26 @@
         </div>
 
     </div>
-    <script src="script/App.js" type="module"></script>
-    <script src="script/Components/card.js" type="module"></script>
+    <div class="endGame">
+        <div>
+            <h1>You Win</h1>
+            <div>
+                you got it in <span id="attemptsShow"></span> attempts
+            </div>
+            <button>
+                Play Again
+            </button>
+        </div>
+    </div>
+    <div class="leaderBoard">
+        <div class="container">
+            <h2>Leader board</h2>
+            <ul class="leaderBoard-rows">
+            </ul>
+        </div>
+    </div>
+    <audio src="assets/audio/fail.mp3" id="fail"></audio>
+    <audio src="assets/audio/success.mp3" id="success"></audio>
+    <script src="script/App.js"></script>
 </body>
 </html>
