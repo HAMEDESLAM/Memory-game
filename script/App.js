@@ -33,7 +33,7 @@ let icons = [
   "fa-solid fa-ice-cream", "fa-solid fa-hamburger", "fa-solid fa-hotdog", "fa-solid fa-bacon",
   "fa-solid fa-egg", "fa-solid fa-fish", "fa-solid fa-bread-slice", "fa-solid fa-carrot",
   "fa-solid fa-cheese", "fa-solid fa-pepper-hot", "fa-solid fa-cookie", "fa-solid fa-lemon",
-  "fa-solid fa-seedling", "fa-solid fa-tree-palm", "fa-solid fa-cactus", "fa-solid fa-flask",
+  "fa-solid fa-seedling", "fa-solid fa-cactus", "fa-solid fa-flask",
   "fa-solid fa-stethoscope", "fa-solid fa-syringe", "fa-solid fa-pills", "fa-solid fa-heartbeat",
   "fa-solid fa-dna", "fa-solid fa-user-md", "fa-solid fa-hospital", "fa-solid fa-ambulance"
 ];
@@ -52,7 +52,7 @@ document.querySelector("form").onsubmit = function (e){
     }
 
     renderCards(myicons)
-    
+    leaderBoardRender()
     this.parentElement.remove()
     showCards();
     
@@ -79,7 +79,7 @@ function createCard(icon) {
     div.classList.add("card");
     div.addEventListener("click",function(){
         this.classList.add("show");
-        let cards = Array.from(document.getElementsByClassName("show"));
+        let cards = Array.from(document.querySelectorAll(".card.show"));
         if (cards.length == 2){
             stopClick();
 
@@ -203,7 +203,9 @@ function endGame(){
 function saveData(name,attempts){
     let dataObject = JSON.parse(localStorage.getItem("data"));
     name = name.toUpperCase();
-    
+    if(name === "UNKNOWN"){
+        return;
+    }
     if(dataObject){
         let preattempts = dataObject[`${name}`] || 0;
         attempts = Math.min(attempts,preattempts);
