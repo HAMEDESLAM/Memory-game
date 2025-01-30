@@ -71,6 +71,7 @@ body{
 .control form{
     width: fit-content;
     padding: 20px 30px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -78,8 +79,15 @@ body{
     background-color: rgb(20, 19, 19);    
     border-radius: 10px;
 }
+@media (max-width:768px) {
+    .control form{
+        width: 97%;
+    }
+
+}
 .control form input:not([type="submit"]){
-    width: 400px;
+    width: 100%;
+
     padding: 10px 15px;
     outline: 0 !important;
     border: none;
@@ -208,7 +216,7 @@ body{
     pointer-events: none;
 }
 .stopClick{
-    pointer-events: none;
+    pointer-events: none !important;
 }
 @media (max-width:768px) {
     

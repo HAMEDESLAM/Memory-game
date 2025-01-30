@@ -63,6 +63,7 @@ document.querySelector("form").onsubmit = function (e){
 
 // Render Cards
 function renderCards(icons){
+    stopClick()
     let length = icons.length;
     for (let i = 0; i < length; i++) {
         let randomIndex = Math.floor(Math.random() * icons.length);
@@ -81,11 +82,7 @@ function createCard(icon) {
         this.classList.add("show");
         let cards = Array.from(document.querySelectorAll(".card.show"));
         if (cards.length == 2){
-            stopClick();
-
             isMatched(cards)
-
-            clickNormally();
         }
 
     })
@@ -121,6 +118,7 @@ function clickNormally(){
 }
 // isMatched
 function isMatched(cards){
+    stopClick();
     let icons = Array.from(document.querySelectorAll(".show .back i"));
 
     if(Array.from(icons[0].classList)[1] === Array.from(icons[1].classList)[1]){ 
@@ -131,13 +129,15 @@ function isMatched(cards){
         document.getElementById("success").play()
         match++;
         (match == cardsNumber) ?endGame():null;
+        clickNormally();
     }
     else{
         document.getElementById("fail").play()
         setTimeout(()=>{
             cards[0].classList.remove("show")
             cards[1].classList.remove("show")
-        },400)
+            clickNormally();
+        },700)
         attempts.innerHTML++;
     }
 }
@@ -156,7 +156,8 @@ function showCards(){
             cards.forEach((card)=>{
                 card.classList.remove("show")
             })
-        },700)
+            clickNormally();
+        },1500)
     })
 
     
