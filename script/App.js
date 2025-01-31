@@ -203,13 +203,16 @@ function endGame(){
 // saveData
 function saveData(name,attempts){
     let dataObject = JSON.parse(localStorage.getItem("data"));
+    
     name = name.toUpperCase();
     if(name === "UNKNOWN"){
         return;
     }
     if(dataObject){
-        let preattempts = dataObject[`${name}`] || 0;
-        attempts = Math.min(attempts,preattempts);
+        if(dataObject[`${name}`]){
+            let preattempts = dataObject[`${name}`];
+            attempts = Math.min(attempts,preattempts);
+        }
         dataObject[`${name}`] = attempts;
         localStorage.setItem("data",JSON.stringify(dataObject));
     }
